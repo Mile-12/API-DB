@@ -1,7 +1,7 @@
 """This module will serve the api request."""
 
 from config import client
-from app import app
+from Co_op import app
 from bson.json_util import dumps
 from flask import request, jsonify
 import json
@@ -9,7 +9,7 @@ import ast
 from importlib.machinery import SourceFileLoader
 
 # Import the helpers module
-helper_module = SourceFileLoader('*', './app/helpers.py').load_module()
+helper_module = SourceFileLoader('*', 'Co_op/helpers.py').load_module()
 
 # Select the database
 db = client.Mile12
