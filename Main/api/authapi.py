@@ -8,6 +8,7 @@ import datetime
 class SignupApi(Resource):
  def post(self):
    body = request.get_json()
+   body['_password'] =body['password']
    user = User(**body)
    user.hash_password()
    user.save()
