@@ -9,7 +9,7 @@ class User(db.DynamicDocument):
     username = db.StringField(required=True, unique=True)
     category = db.ListField(db.StringField(), required=True)
     _password = db.StringField(required=True)
-    #coopL = db.ListField(db.ReferenceField('Coop', reverse_delete_rule=db.PULL))
+    coopL = db.ListField(db.ReferenceField('Coop', reverse_delete_rule=db.PULL))
     #coopmember = db.ListField(db.ReferenceField('Coop', reverse_delete_rule=db.PULL))
     def hash_password(self):
         self._password = generate_password_hash(self._password).decode('utf8')
