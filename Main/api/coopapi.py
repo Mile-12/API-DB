@@ -1,7 +1,6 @@
 from flask import Flask, Response, request
 from flask_mongoengine import json
-from Main.Model.Coop import Coop
-from Main.Model.User import User
+from Main.Model.Models import Coop,User
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required
 import json
