@@ -20,9 +20,9 @@ class Coopapi(Resource):
         #update leader field of the coop
         LeaderId = get_jwt_identity()
         Leader = User.objects.get(UID = LeaderId) 
-        coop.update(push__Leader = Leader)
+        coop.update(push__Leader = Leader.to_dbref())
         #update coop list of Leader
-        Leader.update(push__coopL = coop)
+        Leader.update(push__coopL = coop.to_dbref())
         return {'coopid:': str(id)}, 200
     
 '''
@@ -39,7 +39,7 @@ class Coopapi_coopid(Resource):
         coop = Coop.objects.get(Coopid = Coopid)
         LeaderId = get_jwt_identity()
         Leader = User.objects.get(UID = LeaderId)
-        Leader.update(pull__coopL = coop)
+        Leader.update(pull__coopL = coop.to_dbref())
         coop.delete()
         return '',200
 
@@ -48,13 +48,13 @@ class Coopapi_memberid(Resource):
     def post(self, Member_id,Coop_id):
         coop = Coop.objects.get(Coopid =Coop_id)
         member = User.objects.get(UID = Member_id)
-        coop.update(push__Members = member)
+        coop.update(push__Members = member.to_dbref())
         return '',200
 
     def delete(self,Member_id,Coop_id):
         coop = Coop.objects.get(Coopid =Coop_id)
         member = User.objects.get(UID = Member_id)
-        coop.update(pull__Members = member)
+        coop.update(pull__Members = member.to_dbref())
         return '',200
 
 '''add or remove Product'''
