@@ -1,32 +1,30 @@
-from flask import Flask, Response, request
+from flask import Flask, Response, request, jsonify
 from flask_mongoengine import json
-from Main.Model.Models import Coop,User
+from Main.Model.Coop import Coop
+from Main.Model.User import User
+from Main.Model.UserCoopDetails import user_coop_details as usercoopdetails
 from flask_restful import Resource
-from flask_jwt_extended import jwt_required
-import json
+from flask_jwt_extended import jwt_required,get_jwt_identity
 
 class Coopapi(Resource):
     def get(self):
         coop = Coop.objects().to_json() 
         return Response(coop,mimetype="application/json",status=200)
-
-    @jwt_required
+    
+    @jwt_required()
     def post(self):
         #create new coop
         body = request.get_json()
-        coop = Coop(**body).save()
-        id = coop.Coopid
-        #update leader field of the coop
         LeaderId = get_jwt_identity()
-        Leader = User.objects.get(UID = LeaderId) 
-        coop.update(push__Leader = Leader.to_dbref())
-        #update coop list of Leader
-        Leader.update(push__coopL = coop.to_dbref())
+        coop = Coop(**body).save()
+        Leader = User.objects.get(UID = LeaderId)
+        usercoopdetails(User = Leader, Coop = coop, Status = "Leader" ).save() 
+        # this will add the User , coop and give leader status to the user
         return {'coopid:': str(id)}, 200
     
 '''
 to manipulate coop table with coopid 
-'''
+
 class Coopapi_coopid(Resource):
     @jwt_required
     def put(self,Coopid):
@@ -41,19 +39,9 @@ class Coopapi_coopid(Resource):
         Leader.update(pull__coopL = coop.to_dbref())
         coop.delete()
         return '',200
+'''
 
 '''Add or remove Member from coop'''
-class Coopapi_memberid(Resource): 
-    def post(self, Member_id,Coop_id):
-        coop = Coop.objects.get(Coopid =Coop_id)
-        member = User.objects.get(UID = Member_id)
-        coop.update(push__Members = member.to_dbref())
-        return '',200
-
-    def delete(self,Member_id,Coop_id):
-        coop = Coop.objects.get(Coopid =Coop_id)
-        member = User.objects.get(UID = Member_id)
-        coop.update(pull__Members = member.to_dbref())
-        return '',200
 
 '''add or remove Product'''
+
