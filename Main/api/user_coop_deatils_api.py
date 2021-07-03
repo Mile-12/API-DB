@@ -24,15 +24,15 @@ class User_coop_details_api(Resource):
 
 class Users_in_coop_api(Resource):
     def get(self, cid):
-        ''' Getting a list of Co-op's  users  '''
+        ''' Getting a list of Co-op's  Members  '''
         coop = Coop.objects.get(Coopid=cid)
         c = usercoopdetails.objects.filter(Coop__in = [coop.id])
         leng = len(c)
         data = {}
         for i in range(leng):
-            value = "User" + c[i].User.UID  
+            value = "Member" + c[i].User.UID  
             data[value] = {
-            'User name' : c[i].User.username,
+            'Member name' : c[i].User.username,
             }
         return jsonify(data)     
 
