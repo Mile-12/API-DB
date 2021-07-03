@@ -22,5 +22,6 @@ class Coopapi(Resource):
         usercoopdetails(User = Leader, Coop = coop, Status = "Leader" ).save() 
         # this will add the User , coop and give leader status to the user
         return {'Response:': 'added sucessfully'}, 200
-    
+
+
 
