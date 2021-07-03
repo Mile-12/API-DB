@@ -9,4 +9,3 @@ class user_coop_details(db.DynamicDocument):
         {'fields' : ('User','Coop'), 'unique':True}
         ]} #enforces compund key ( the combination)
     Status = db.StringField(required=True)
-    
