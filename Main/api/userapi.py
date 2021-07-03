@@ -22,7 +22,7 @@ class UserApi(Resource):
   @jwt_required
   def put(self, uid):
     body = request.get_json()
-    User.objects.get(uid=uid).update(**body)
+    User.objects.get(UID=uid).update(**body)
     return '', 200
   @jwt_required
   def delete(self, uid):
@@ -30,5 +30,6 @@ class UserApi(Resource):
     return '', 200
 
   def get(self, uid):
-    users = User.objects.get(uid=uid).to_json()
+    users = User.objects.get(UID=uid).to_json()
     return Response(users, mimetype="application/json", status=200)
+    
