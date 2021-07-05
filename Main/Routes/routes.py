@@ -3,6 +3,8 @@ from Main.api.add_member_api import add_member_api
 from Main.api.user_coop_deatils_api import User_coop_details_api, Users_in_coop_api
 from Main.api.userapi import UserApi, UsersApi
 from Main.api.authapi import SignupApi, LoginApi
+from Main.api.productapi import Productapi,Productapi_price,Productapi_quantity
+from Main.api.product_coop_details_api import Productapi_productid, Productapi_Coopid
 
 def initialize_routes(api):
     # List users
@@ -23,3 +25,24 @@ def initialize_routes(api):
     #Post : add User (uid) to Co-op (cid)
     api.add_resource(add_member_api, '/api/member/<uid>/<cid>')
     #api.add_resource()
+
+
+    #Get: get list of Products created by auth user
+    api.add_resource(Productapi, '/api/products')
+
+
+    #Get: get list of Products created by Co-op
+    #Post: adds product to Co-op (coopid)
+    api.add_resource(Productapi_Coopid, '/api/products/<coopid>')
+
+    #Put: update price of product (productId)
+    api.add_resource(Productapi_price, '/api/product_price/<productId>/<price>')
+
+    #Put: update quantity of product (productId)
+    api.add_resource(Productapi_quantity, '/api/product_quantity/<productId>/<quantity>')
+    
+    #delete product
+    api.add_resource(Productapi_productid, '/api/product_remove/<productid>/<coopid>')
+
+
+    
