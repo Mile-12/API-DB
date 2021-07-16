@@ -29,6 +29,9 @@ def initialize_routes(api):
 
     #Get: get list of Products created by auth user
     api.add_resource(Productapi, '/api/products')
+    
+     #Get: get list of Products from all coops (for inventory purposes)
+    api.add_resource(Product_api, '/api/all_products')
 
 
     #Get: get list of Products created by Co-op
