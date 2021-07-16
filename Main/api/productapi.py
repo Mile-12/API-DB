@@ -30,7 +30,7 @@ class Productapi(Resource):
         return jsonify(data)
 
 
-class Product_api(Resource):
+class ListAllProduct_api(Resource):
     #get all products from all coops
     def get(self):
         Product_coop = productcoopdetails.objects()

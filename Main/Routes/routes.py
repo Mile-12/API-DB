@@ -3,7 +3,7 @@ from Main.api.add_member_api import add_member_api
 from Main.api.user_coop_deatils_api import User_coop_details_api, Users_in_coop_api
 from Main.api.userapi import UserApi, UsersApi
 from Main.api.authapi import SignupApi, LoginApi
-from Main.api.productapi import Productapi,Productapi_price,Productapi_quantity, Product_api
+from Main.api.productapi import Productapi,Productapi_price,Productapi_quantity, ListAllProduct_api
 from Main.api.product_coop_details_api import Productapi_productid, Productapi_Coopid
 
 def initialize_routes(api):
@@ -31,7 +31,7 @@ def initialize_routes(api):
     api.add_resource(Productapi, '/api/products')
     
      #Get: get list of Products from all coops (for inventory purposes)
-    api.add_resource(Product_api, '/api/all_products')
+    api.add_resource(ListAllProduct_api, '/api/all_products')
 
 
     #Get: get list of Products created by Co-op
