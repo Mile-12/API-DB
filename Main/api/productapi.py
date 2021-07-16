@@ -29,6 +29,28 @@ class Productapi(Resource):
             }
         return jsonify(data)
 
+
+class Product_api(Resource):
+    #get all products from all coops
+    def get(self):
+        Product_coop = productcoopdetails.objects()
+        leng = len(Product_coop)
+        data = {}
+        for i in range(leng):
+            value = "Product" + str(i)
+            data[value] = {
+                'Product Id': str(Product_coop[i].Product.id),
+                'Product Name':Product_coop[i].Product.Name,
+                'Coop' : Product_coop[i].Coop.Name,
+                'Created by':Product_coop[i].Createdby.username,
+                'Contact' :Product_coop[i].Createdby.mobile,
+                'Description':Product_coop[i].Product.Description,
+                'Quantity Available' : Product_coop[i].Product.Quantity,
+                'Price':Product_coop[i].Product.Price,
+            }
+        return jsonify(data)
+    
+    
 class Productapi_quantity(Resource):
     #update quantity of product
     def put(self,productId,quantity):
