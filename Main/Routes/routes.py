@@ -31,7 +31,7 @@ def initialize_routes(api):
     api.add_resource(Productapi, '/api/products')
     
      #Get: get list of Products from all coops (for inventory purposes)
-    api.add_resource(ListAllProduct_api, '/api/all_products')
+    api.add_resource(ListAllProduct_api, '/api/all_products', '/api/all_products/<id>')
 
 
     #Get: get list of Products created by Co-op
@@ -44,7 +44,8 @@ def initialize_routes(api):
     #Put: update quantity of product (productId)
     api.add_resource(Productapi_quantity, '/api/product_quantity/<productId>/<quantity>')
     
-    #delete product
+    #delete : delete product
+    #Get : Get product detals based on name 
     api.add_resource(Productapi_productid, '/api/product_remove/<productid>/<coopid>')
 
 

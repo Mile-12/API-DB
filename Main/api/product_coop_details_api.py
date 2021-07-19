@@ -39,7 +39,6 @@ class Productapi_Coopid(Resource):
         return {'Response:':'product added successfully'},200
     
 class Productapi_productid(Resource):  
-    #remove a product
     @jwt_required
     def delete(self,productid,coopid):
         try:

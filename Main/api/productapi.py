@@ -32,12 +32,22 @@ class Productapi(Resource):
 
 class ListAllProduct_api(Resource):
     #get all products from all coops
-    def get(self):
+    def get(self,id=None):
+        if id != None:
+                product = Product.objects.get(Name=id)
+                Name = product
+                data = {
+                        'Product Name':product.Name,
+                        'Description':product.Description,
+                        'Quantity Available' : product.Quantity,
+                        'Price':product.Price,
+                    }
+                return jsonify(Name)
         Product_coop = productcoopdetails.objects()
         leng = len(Product_coop)
         data = {}
         for i in range(leng):
-            value = "Product" + str(i)
+            value = str(i)
             data[value] = {
                 'Product Id': str(Product_coop[i].Product.id),
                 'Product Name':Product_coop[i].Product.Name,
