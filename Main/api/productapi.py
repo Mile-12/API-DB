@@ -6,6 +6,7 @@ from Main.Model.User import User
 from Main.Model.ProductCoopDetails import product_coop_details as productcoopdetails
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required,get_jwt_identity
+import json
 
 
 class Productapi(Resource):
@@ -45,10 +46,9 @@ class ListAllProduct_api(Resource):
                 return jsonify(Name)
         Product_coop = productcoopdetails.objects()
         leng = len(Product_coop)
-        data = {}
+        data = []
         for i in range(leng):
-            value = str(i)
-            data[value] = {
+            data.append({
                 'Product Id': str(Product_coop[i].Product.id),
                 'Product Name':Product_coop[i].Product.Name,
                 'Coop' : Product_coop[i].Coop.Name,
@@ -57,8 +57,8 @@ class ListAllProduct_api(Resource):
                 'Description':Product_coop[i].Product.Description,
                 'Quantity Available' : Product_coop[i].Product.Quantity,
                 'Price':Product_coop[i].Product.Price,
-            }
-        return jsonify(data)
+            })
+        return json.dumps(data)
     
     
 class Productapi_quantity(Resource):
