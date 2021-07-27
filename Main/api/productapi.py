@@ -58,7 +58,7 @@ class ListAllProduct_api(Resource):
                 'Quantity Available' : Product_coop[i].Product.Quantity,
                 'Price':Product_coop[i].Product.Price,
             })
-        return json.dumps(data)
+        return jsonify(data)
     
     
 class Productapi_quantity(Resource):
