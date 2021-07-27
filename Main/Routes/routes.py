@@ -5,6 +5,7 @@ from Main.api.userapi import UserApi, UsersApi
 from Main.api.authapi import SignupApi, LoginApi
 from Main.api.productapi import Productapi,Productapi_price,Productapi_quantity, ListAllProduct_api
 from Main.api.product_coop_details_api import Productapi_productid, Productapi_Coopid
+from Main.api.purchase_history import Purchase_history
 
 def initialize_routes(api):
     # List users
@@ -48,5 +49,7 @@ def initialize_routes(api):
     #Get : Get product detals based on name 
     api.add_resource(Productapi_productid, '/api/product_remove/<productid>/<coopid>')
 
+    # Get: get purchase history of coops
+    # Post: Add purchase history
+    api.add_resource(Purchase_history, '/api/history/<coopid>')
 
-    
