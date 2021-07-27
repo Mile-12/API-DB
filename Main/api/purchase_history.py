@@ -13,7 +13,7 @@ class Purchase_history(Resource):
     # get all purchase records of a coop
     #@jwt_required
     def get(self, coopid):
-        #try:
+        try:
             History = purchase_History.objects.filter(coopid=coopid)
             leng = len(History)
             data = {}
@@ -30,8 +30,8 @@ class Purchase_history(Resource):
                 }
             return jsonify(data)
         
-        #except: 
-         #   return {'Response':"Record Not Found"}
+        except: 
+            return {'Response':"Record Not Found"}
     # add a new Purchase History
 
     def post(self, coopid):
