@@ -26,8 +26,7 @@ class Productapi_Coopid(Resource):
                 'Price':Product_coop[i].Product.Price,
             }
         return jsonify(data)
-        
-class Product_add(Resource):        
+              
     #add a new product by auth user
     @jwt_required
     def post(self,coopid):
