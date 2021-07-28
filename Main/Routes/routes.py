@@ -4,7 +4,7 @@ from Main.api.user_coop_deatils_api import User_coop_details_api, Users_in_coop_
 from Main.api.userapi import UserApi, UsersApi
 from Main.api.authapi import SignupApi, LoginApi
 from Main.api.productapi import Productapi,Productapi_price,Productapi_quantity, ListAllProduct_api
-from Main.api.product_coop_details_api import Productapi_productid, Productapi_Coopid, Product_add
+from Main.api.product_coop_details_api import Productapi_productid, Productapi_Coopid
 from Main.api.purchase_history import Purchase_history
 from Main.api.expenses_api import Expenses_api
 from Main.api.Profit_level_api import Profit_level
@@ -39,10 +39,9 @@ def initialize_routes(api):
 
 
     #Get: get list of Products created by Co-op
+    #Post: adds product to Co-op (coopid)
     api.add_resource(Productapi_Coopid, '/api/products/<coopid>')
     
-    #Post: adds product to Co-op (coopid)
-    api.add_resource(Product_add, '/api/product_add/<coopid>')    
 
     #Put: update price of product (productId)
     api.add_resource(Productapi_price, '/api/product_price/<productId>/<price>')
