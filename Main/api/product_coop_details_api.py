@@ -27,6 +27,7 @@ class Productapi_Coopid(Resource):
             }
         return jsonify(data)
         
+class Product_add(Resource):        
     #add a new product by auth user
     @jwt_required
     def post(self,coopid):
@@ -53,4 +54,3 @@ class Productapi_productid(Resource):
 
         except:
             return {'Response':'Record Not Found'} 
-            
