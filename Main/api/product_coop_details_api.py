@@ -33,7 +33,7 @@ class Productapi_Coopid(Resource):
         body = request.get_json()
         LeaderId = get_jwt_identity()
         product = Product(**body).save()
-        Leader = User.objects.get(_id = LeaderId)
+        Leader = User.objects.get(username = LeaderId)
         coop =  Coop.objects.get(Coopid = coopid)
         productcoopdetails(Createdby = Leader,Coop = coop,Product = product).save()
         return {'Response:':'product added successfully'},200
@@ -46,7 +46,7 @@ class Productapi_productid(Resource):
             product = Product.objects.get(id=productid)
             Name = product.Name
             LeaderId = get_jwt_identity()
-            Createdby = User.objects.get(_id = LeaderId)
+            Createdby = User.objects.get(username = LeaderId)
             productcoopdetails.objects.filter(Product__in = [productid],Createdby__in = [Createdby.id],Coop__in = [coop.id]).delete()
             product.delete()
             return {'Response:': Name + ' has been remove successfully'},200
