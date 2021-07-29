@@ -28,11 +28,12 @@ class Users_in_coop_api(Resource):
         coop = Coop.objects.get(Coopid=cid)
         c = usercoopdetails.objects.filter(Coop__in = [coop.id])
         leng = len(c)
-        data = {}
+        data = []
         for i in range(leng):
-            value = "Member" + c[i].User.username  
-            data[value] = {
-            'Member name' : c[i].User.username,
-            }
+            data.append({
+            'name' : c[i].User.username,
+            'Mobile' : c[i].User.mobile,
+            'Stauts' : c[i].Status,
+            })
         return jsonify(data)     
 

@@ -28,7 +28,6 @@ def initialize_routes(api):
 
     #Post : add User (uid) to Co-op (cid)
     api.add_resource(add_member_api, '/api/member/<username>/<cid>')
-    #api.add_resource()
 
 
     #Get: get list of Products created by auth user
