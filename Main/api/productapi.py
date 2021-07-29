@@ -11,7 +11,7 @@ import json
 
 class Productapi(Resource):
     #get all products  created by the leader
-    @jwt_required
+    @jwt_required()
     def get(self):
         LeaderId = get_jwt_identity()
         Leader = User.objects.get(username = LeaderId)
