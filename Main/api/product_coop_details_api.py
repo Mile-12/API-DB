@@ -28,7 +28,7 @@ class Productapi_Coopid(Resource):
         return jsonify(data)
               
     #add a new product by auth user
-    @jwt_required
+    @jwt_required()
     def post(self,coopid):
         body = request.get_json()
         LeaderId = get_jwt_identity()
@@ -39,7 +39,7 @@ class Productapi_Coopid(Resource):
         return {'Response:':'product added successfully'},200
     
 class Productapi_productid(Resource):  
-    @jwt_required
+    @jwt_required()
     def delete(self,productid,coopid):
         try:
             coop = Coop.objects.get(Coopid = coopid)
