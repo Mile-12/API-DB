@@ -9,7 +9,7 @@ from Main.api.product_coop_details_api import Productapi_productid, Productapi_C
 def initialize_routes(api):
     # List users
     api.add_resource(UsersApi, '/api/users') 
-    api.add_resource(UserApi, '/api/user/<uid>')
+    api.add_resource(UserApi, '/api/user/<username>')
     # Auth
     api.add_resource(SignupApi, '/api/auth/signup')
     api.add_resource(LoginApi, '/api/auth/login')
@@ -18,12 +18,12 @@ def initialize_routes(api):
     api.add_resource(Coopapi,'/api/coop')
 
     # Get: get the data of a user their Co-ops and roles
-    api.add_resource(User_coop_details_api, '/api/ucdetails/<uid>')
+    api.add_resource(User_coop_details_api, '/api/ucdetails/<username>')
     # Get: User in a Co-op
     api.add_resource(Users_in_coop_api,'/api/coop/users/<cid>')
 
     #Post : add User (uid) to Co-op (cid)
-    api.add_resource(add_member_api, '/api/member/<uid>/<cid>')
+    api.add_resource(add_member_api, '/api/member/<username>/<cid>')
     #api.add_resource()
 
 

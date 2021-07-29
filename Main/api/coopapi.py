@@ -16,9 +16,8 @@ class Coopapi(Resource):
         #create new coop for the auth user
         body = request.get_json()
         LeaderId = get_jwt_identity()
+        Leader = User.objects.get(username = LeaderId)
         coop = Coop(**body).save()
-        Leader = User.objects.get(UID = LeaderId)
-        print(Leader.UID)
         usercoopdetails(User = Leader, Coop = coop, Status = "Leader" ).save() 
         # this will add the User , coop and give leader status to the user
         return {'Response:': 'added sucessfully'}, 200

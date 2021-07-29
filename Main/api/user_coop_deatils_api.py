@@ -5,16 +5,16 @@ from Main.Model.User import User
 from Main.Model.Coop import Coop
 
 class User_coop_details_api(Resource):
-    def get(self, uid):
+    def get(self, username):
         ''' Getting a list of Co-ops a user is part of '''
-        user = User.objects.get(UID=uid)
+        user = User.objects.get(username=username)
         c = usercoopdetails.objects.filter(User__in = [user.id])
         leng = len(c)
         data = {}
         for i in range(leng):
             value = "Co-op" + str(i)  
             data[value] = {
-            'User id' : c[i].User.UID,
+            'User name' : c[i].User.username,
             'Coop id' : c[i].Coop.Coopid,
             'Coop name' : c[i].Coop.Name,
             'Status' : c[i].Status
@@ -30,7 +30,7 @@ class Users_in_coop_api(Resource):
         leng = len(c)
         data = {}
         for i in range(leng):
-            value = "Member" + c[i].User.UID  
+            value = "Member" + c[i].User.username  
             data[value] = {
             'Member name' : c[i].User.username,
             }

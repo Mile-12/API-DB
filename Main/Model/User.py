@@ -2,7 +2,6 @@ from  Main.DAC.config import db
 from flask_bcrypt import generate_password_hash, check_password_hash
 
 class User(db.Document):
-    UID = db.StringField(required=True, unique=True)
     #image = db.ImageFeild()
     mobile = db.StringField(required=True, unique=True)
     username = db.StringField(required=True, unique=True)
