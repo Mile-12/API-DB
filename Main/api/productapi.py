@@ -14,7 +14,7 @@ class Productapi(Resource):
     @jwt_required
     def get(self):
         LeaderId = get_jwt_identity()
-        Leader = User.objects.get(UID = LeaderId)
+        Leader = User.objects.get(username = LeaderId)
         Product_coop = productcoopdetails.objects.filter(Createdby__in = [Leader.id])
         leng = len(Product_coop)
         data = {}
