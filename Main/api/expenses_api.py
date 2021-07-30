@@ -20,16 +20,14 @@ class Expenses_api(Resource):
         try:
             expenses = Expenses.objects.filter(Coopid=coopid)
             leng = len(expenses)
-            data = {}
+            data = []
             for i in range(leng):
-                value = str(i+1)
-                data[value] = {
-
+                data.append({
                     'Location':expenses[i].Location,
                     'Product Name': expenses[i].ProductName,
                     'Amount':expenses[i].Amount,
                     'Date':expenses[i].Date
-                }
+                })
             return jsonify(data)
         
         except:
