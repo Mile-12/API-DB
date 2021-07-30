@@ -24,7 +24,7 @@ class Expenses_api(Resource):
             for i in range(leng):
                 data.append({
                     'Location':expenses[i].Location,
-                    'Product Name': expenses[i].ProductName,
+                    'ProductName': expenses[i].ProductName,
                     'Amount':expenses[i].Amount,
                     'Date':expenses[i].Date
                 })
