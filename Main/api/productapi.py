@@ -20,11 +20,11 @@ class Productapi(Resource):
         data = []
         for i in range(leng):
             data.append({
-                'Product Id': str(Product_coop[i].Product.id),
-                'Product Name':Product_coop[i].Product.Name,
-                'Created by':Product_coop[i].Createdby.username,
+                'ProductId': str(Product_coop[i].Product.id),
+                'ProductName':Product_coop[i].Product.Name,
+                'CreateBy':Product_coop[i].Createdby.username,
                 'Description':Product_coop[i].Product.Description,
-                'Quantity Available' : Product_coop[i].Product.Quantity,
+                'QuantityAvailable' : Product_coop[i].Product.Quantity,
                 'Price':Product_coop[i].Product.Price,
             })
         return jsonify(data)
