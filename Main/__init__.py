@@ -11,7 +11,9 @@ from flask_cors import CORS
 app = Flask(__name__)
 app.config.from_object(Config)
 api = Api(app)
-CORS(app)
+CORS(app, resources=r'/api/*',allow_headers=[
+    "Content-Type", "Authorization", "Access-Control-Allow-Methods"])
+#CORS(app)
 app.config['MONGODB_SETTINGS'] = {
     'host': os.environ["DB"]
 }
