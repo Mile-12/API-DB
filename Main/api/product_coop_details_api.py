@@ -14,17 +14,16 @@ class Productapi_Coopid(Resource):
         coop = Coop.objects.get(Coopid = coopid)
         Product_coop = productcoopdetails.objects.filter(Coop__in = [coop.id])
         leng = len(Product_coop)
-        data = {}
+        data = []
         for i in range(leng):
-            value = "Product" + str(i)
-            data[value] = {
-                'Product Id': str(Product_coop[i].Product.id),
-                'Product Name':Product_coop[i].Product.Name,
-                'Created by':Product_coop[i].Createdby.username,
+            data.append({
+                'ProductId': str(Product_coop[i].Product.id),
+                'ProductName':Product_coop[i].Product.Name,
+                'CreateBy':Product_coop[i].Createdby.username,
                 'Description':Product_coop[i].Product.Description,
-                'Quantity Available' : Product_coop[i].Product.Quantity,
+                'QuantityAvailable' : Product_coop[i].Product.Quantity,
                 'Price':Product_coop[i].Product.Price,
-            }
+            })
         return jsonify(data)
               
     #add a new product by auth user
