@@ -8,6 +8,7 @@ from Main.api.product_coop_details_api import Productapi_productid, Productapi_C
 from Main.api.purchase_history import Purchase_history
 from Main.api.expenses_api import Expenses_api
 from Main.api.Profit_level_api import Profit_level
+from Main.api.price_forecast import PriceAPI
 
 
 def initialize_routes(api):
@@ -63,3 +64,6 @@ def initialize_routes(api):
     #Get: get Profit history of a coop 
     #Post: add profit for a coop 
     api.add_resource(Profit_level, '/api/profit/<coopid>')
+    #Post : 
+    #body : {"input_data": [{"fields": ["date","main_commercial_species","size"],"values": [["2021-01-01","Rey",5]]}]}
+    api.add_resource(PriceAPI, '/api/forecast/price')
