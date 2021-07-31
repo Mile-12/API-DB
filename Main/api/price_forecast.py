@@ -8,7 +8,7 @@ import requests
 from datetime import date
 
 class PriceAPI(Resource):
- def get(self):
+ def post(self):
     to_date = date.today()
     body = request.get_json()
     print(body)
